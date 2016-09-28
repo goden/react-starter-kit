@@ -22,3 +22,9 @@
   </body>
 </html>
 ```
+
+2. 引入react.js與react-dom.js (需先行下載Starter Kit)
+```
+<script src="`build/react.js`"></script>
+<script src="`build/react-dom.js`"></script>
+```

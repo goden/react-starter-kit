@@ -34,7 +34,7 @@
 ```
 * 在body中指定節點要mount所謂React Component的地方， `<div id="example"></div>`
 
-* 透過`babel`來compile `JSX`語法，babel會將其轉換成瀏覽器才懂的javascript語法。因此塞入以下程式碼後，整個ReactJS應用程式就算大功告成。
+* 透過`babel`來compile `JSX`語法，babel會將其轉換成瀏覽器才懂的javascript語法。因此`<div id="example"></div>` 引入以下程式碼後，整個ReactJS應用程式就算大功告成。
 ```
 <script type="text/babel">
   ReactDOM.render(

@@ -98,3 +98,5 @@ gulp.task('default', function () {
         .pipe(gulp.dest('dist'));
 });
 ```
+
+* 執行`gulp default`指令，再重新refresh網頁就可以看到結果。

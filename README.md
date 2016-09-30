@@ -10,7 +10,9 @@
 ## Local/CDN 引入部署
 按照[ReactJS官網的範例](https://facebook.github.io/react/index.html)，採用版本為v15.3.1
 
-* 建立index.html
+* 根目錄下建立`dist`與`src`目錄
+
+* 建立`index.html`於`dist`目錄
 ```html
 <!DOCTYPE html>
 <html>
@@ -23,10 +25,10 @@
 </html>
 ```
 
-* 引入react.js與react-dom.js (需先行下載Starter Kit)
+* 引入react.js與react-dom.js (需先行下載Starter Kit)並且放置於`dist/scripts``目錄
 ```html
-<script src="build/react.js"></script>
-<script src="build/react-dom.js"></script>
+<script src="scripts/react.js"></script>
+<script src="scripts/react-dom.js"></script>
 ```
 
 * 引入babel-compiler的script
@@ -108,7 +110,7 @@ gulp.task('build', function () {
         .pipe(sourcemaps.init())
         .pipe(react())
         .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest('dist'));
+        .pipe(gulp.dest('dist/scripts'));
 });
 ```
 
@@ -139,3 +141,26 @@ gulp.task('browser', function (cb) {
 });
 ```
 執行 `gulp browser`, 便可以開啟預設瀏覽器檢視頁面。
+
+### Gulp Babel
+執行以下命令安裝Babel環境，安裝後可以使用ES2015(ES6)語法來撰寫下一代的javascript語言
+```
+npm install --save-dev gulp-babel babel-preset-es2015
+```
+
+更改`gulpfile.js`中`build`的task設定
+```javascript
+var babel = require('gulp-babel');
+....
+gulp.task('build', function () {
+    return gulp.src('src/*.jsx')
+        .pipe(sourcemaps.init())
+        .pipe(react())
+        .pipe(babel({
+          presets: ['es2015']
+        }))
+        .pipe(sourcemaps.write('.'))
+        .pipe(gulp.dest('dist/scripts'));
+});
+....
+```

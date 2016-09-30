@@ -2,6 +2,7 @@ var gulp = require('gulp');
 var sourcemaps = require('gulp-sourcemaps');
 var react = require('gulp-react');
 var browserSync = require("browser-sync");
+var babel = require('gulp-babel');
 
 // deafult task
 gulp.task('default', [], function(cb) {
@@ -12,6 +13,9 @@ gulp.task('build', function () {
     return gulp.src('src/*.jsx')
         .pipe(sourcemaps.init())
         .pipe(react())
+        .pipe(babel({
+          presets: ['es2015']
+        }))
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('dist/scripts'));
 });

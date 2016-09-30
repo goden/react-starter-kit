@@ -90,7 +90,15 @@ npm install --save-dev gulp-sourcemaps
 var gulp = require('gulp');
 var sourcemaps = require('gulp-sourcemaps');
 var react = require('gulp-react');
-gulp.task('default', function () {
+var browserSync = require('browser-sync');
+// default task
+gulp.task('default', [], function(cb) {
+  gulp.start('build', cb);
+});
+gulp.task('watch', function() {
+  gulp.watch(['src/*'], ['build']);
+});
+gulp.task('build', function () {
     return gulp.src('src/*.jsx')
         .pipe(sourcemaps.init())
         .pipe(react())
@@ -99,4 +107,45 @@ gulp.task('default', function () {
 });
 ```
 
-* 執行`gulp default`指令，再重新refresh網頁就可以看到結果。
+* 執行`gulp build`指令，再重新refresh網頁就可以看到結果。
+
+### BrowserSync
+執行`npm install --save-dev browser-sync`命令執行安裝套件. BrowserSync作為一套同步工具，可以啟動系統預設的瀏覽器並且檢查CSS/HTML的變更即時同步至瀏覽器。
+
+將`var browserSync = require('browser-sync');`加入至`gulpfile.js`中，並新增一組`browser`的task。
+```javascript
+var gulp = require('gulp');
+var sourcemaps = require('gulp-sourcemaps');
+var react = require('gulp-react');
+var browserSync = require('browser-sync');
+
+// default task
+gulp.task('default', [], function(cb) {
+  gulp.start('build', cb);
+});
+
+gulp.task('build', function () {
+    return gulp.src('src/*.jsx')
+        .pipe(sourcemaps.init())
+        .pipe(react())
+        .pipe(sourcemaps.write('.'))
+        .pipe(gulp.dest('dist'));
+});
+
+// Live Reload
+gulp.task('browser', function (cb) {
+    browserSync.init(null, {
+        server: {
+            baseDir: ['dist']
+        },
+        notify: false
+    });
+    gulp.watch([
+        'dist/**/*.html',
+        'dist/**/*.js',
+        'dist/**/*.css'
+    ], browserSync.reload);
+});
+```
+
+執行 `gulp browser`, 便可以開啟預設瀏覽器檢視頁面。

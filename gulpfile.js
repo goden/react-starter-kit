@@ -13,7 +13,7 @@ gulp.task('build', function () {
         .pipe(sourcemaps.init())
         .pipe(react())
         .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest('dist'));
+        .pipe(gulp.dest('dist/scripts'));
 });
 
 // Watch Files For Changes

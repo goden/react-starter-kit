@@ -3,6 +3,7 @@ var sourcemaps = require('gulp-sourcemaps');
 var react = require('gulp-react');
 var browserSync = require("browser-sync");
 
+// deafult task
 gulp.task('default', [], function(cb) {
   gulp.start('build', cb);
 });
@@ -13,6 +14,11 @@ gulp.task('build', function () {
         .pipe(react())
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('dist'));
+});
+
+// Watch Files For Changes
+gulp.task('watch', function () {
+    gulp.watch(['src/*'], ['build']);
 });
 
 gulp.task('browser', function (cb) {

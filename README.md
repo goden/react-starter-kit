@@ -87,17 +87,22 @@ npm install --save-dev gulp-sourcemaps
 
 * 新增gulpfile.js並且新增下列內容:
 ```javascript
+
 var gulp = require('gulp');
 var sourcemaps = require('gulp-sourcemaps');
 var react = require('gulp-react');
 var browserSync = require('browser-sync');
+
 // default task
 gulp.task('default', [], function(cb) {
   gulp.start('build', cb);
 });
+
 gulp.task('watch', function() {
   gulp.watch(['src/*'], ['build']);
 });
+
+// Live Reload
 gulp.task('build', function () {
     return gulp.src('src/*.jsx')
         .pipe(sourcemaps.init())
@@ -114,23 +119,9 @@ gulp.task('build', function () {
 
 將`var browserSync = require('browser-sync');`加入至`gulpfile.js`中，並新增一組`browser`的task。
 ```javascript
-var gulp = require('gulp');
-var sourcemaps = require('gulp-sourcemaps');
-var react = require('gulp-react');
+...(code)...
 var browserSync = require('browser-sync');
-
-// default task
-gulp.task('default', [], function(cb) {
-  gulp.start('build', cb);
-});
-
-gulp.task('build', function () {
-    return gulp.src('src/*.jsx')
-        .pipe(sourcemaps.init())
-        .pipe(react())
-        .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest('dist'));
-});
+........
 
 // Live Reload
 gulp.task('browser', function (cb) {
@@ -147,5 +138,4 @@ gulp.task('browser', function (cb) {
     ], browserSync.reload);
 });
 ```
-
 執行 `gulp browser`, 便可以開啟預設瀏覽器檢視頁面。

@@ -1,4 +1,8 @@
+var msg = 'Hello, world!!';
+
 ReactDOM.render(
-    React.createElement("h1", null, "Hello, world!!"), document.getElementById('example'));
+    React.createElement("h1", null, msg),
+    document.getElementById('example')
+);
 
 //# sourceMappingURL=hello.js.map

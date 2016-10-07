@@ -1,3 +1,6 @@
+import React from 'react';
+import {render} from 'react-dom';
+
 var Title = React.createClass({
   render: function() {
     return <div>
@@ -7,7 +10,7 @@ var Title = React.createClass({
   }
 });
 
-ReactDOM.render(
+render(
   <Title text="Thinking in React!" />,
   document.getElementById('content')
 )

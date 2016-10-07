@@ -15,7 +15,9 @@ gulp.task('default', [], function(cb) {
 gulp.task('build', function () {
     return gulp.src('src/*.jsx')
         .pipe(sourcemaps.init())
-        .pipe(react())
+        .pipe(react({
+          es6module: true
+        }))
         .pipe(babel({
           presets: ['es2015']
         }))

@@ -5,6 +5,7 @@ var sourcemaps = require('gulp-sourcemaps');
 var react = require('gulp-react');
 var browserSync = require("browser-sync");
 var babel = require('gulp-babel');
+var browserify = require('gulp-browserify');
 
 
 // deafult task
@@ -22,12 +23,18 @@ gulp.task('build', function () {
           presets: ['es2015']
         }))
         .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest('dist/scripts'));
+        .pipe(gulp.dest('src'));
 });
 
 // Watch Files For Changes
 gulp.task('watch', function () {
     gulp.watch(['src/*'], ['build']);
+});
+
+gulp.task('browserify', function () {
+    return gulp.src('src/*.js')
+            .pipe(browserify())
+            .pipe(gulp.dest('dist/scripts'));
 });
 
 gulp.task('browser', function (cb) {

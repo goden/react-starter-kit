@@ -7,14 +7,13 @@ var browserSync = require("browser-sync");
 var babel = require('gulp-babel');
 var browserify = require('gulp-browserify');
 
-
 // deafult task
 gulp.task('default', [], function(cb) {
   gulp.start('build', cb);
 });
 
 gulp.task('build', function () {
-    return gulp.src('src/*.jsx')
+    return gulp.src(['src/*.jsx', 'src/**/*.jsx']) 
         .pipe(sourcemaps.init())
         .pipe(react({
           es6module: true
@@ -28,11 +27,11 @@ gulp.task('build', function () {
 
 // Watch Files For Changes
 gulp.task('watch', function () {
-    gulp.watch(['src/*'], ['build']);
+    gulp.watch(['src/*.jsx', 'src/**/*.jsx'], ['build', 'browserify']);
 });
 
 gulp.task('browserify', function () {
-    return gulp.src('src/*.js')
+    return gulp.src(['src/*.js', 'src/**/*.js'])
             .pipe(browserify())
             .pipe(gulp.dest('dist/scripts'));
 });

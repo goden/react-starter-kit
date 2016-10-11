@@ -7,13 +7,15 @@ export class Title extends Component {
 
 		super(props, context);
 
+		// getInitialState()
 		this.state = {
 			data: 'This is constructor.',
 			counter: 0
-		};	
+		};
 
 	}
 
+	// Require use 'bind()' to bundle tick() to component.
 	tick() {
 		this.setState({
 			counter: this.state.counter + 1
@@ -22,7 +24,11 @@ export class Title extends Component {
 
 
 	componentDidMount() {
-		setInterval(this.tick.bind(this), 1000);     
+		this.interval = setInterval(this.tick.bind(this), 1000);
+	}
+
+	componentWillUnmount() {
+		clearInterval(this.interval);
 	}
 
 	render() {
@@ -34,6 +40,7 @@ export class Title extends Component {
 	};
 }
 
+// getDeafultProps()
 Title.defaultProps = {
 	text: 'Hello',
 	author: 'Goden'

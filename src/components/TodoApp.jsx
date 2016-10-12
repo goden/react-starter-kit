@@ -6,9 +6,12 @@ export class TodoApp extends Component {
     constructor(props, context) {
       super(props, context);
 
-      // this.state = {
-      //
-      // };
+      this.state = {
+        text: ''
+      };
+
+      this._handleClick = this._handleClick.bind(this);
+      this._handleChange = this._handleChange.bind(this);
     }
 
     componentDidMount() {
@@ -19,12 +22,23 @@ export class TodoApp extends Component {
 
     }
 
+    _handleClick() {
+      alert('OK');
+    }
+
+    _handleChange(e) {
+      // console.log('_changed: ' + e.target.value);
+      this.setState({
+        text: e.target.value
+      });
+    }
+
     render() {
       return (
         <div>
-            <TodoList />
-            <input value='' />
-            <button>Add</button>
+            <TodoList items={this.state.text} />
+            <input onChange={this._handleChange} value={this.state.text} />
+            <button onClick={this._handleClick}>Add</button>
         </div>
       );
     }

@@ -27,11 +27,15 @@ var TodoApp = exports.TodoApp = function (_Component) {
   function TodoApp(props, context) {
     _classCallCheck(this, TodoApp);
 
-    return _possibleConstructorReturn(this, (TodoApp.__proto__ || Object.getPrototypeOf(TodoApp)).call(this, props, context));
+    var _this = _possibleConstructorReturn(this, (TodoApp.__proto__ || Object.getPrototypeOf(TodoApp)).call(this, props, context));
 
-    // this.state = {
-    //
-    // };
+    _this.state = {
+      text: ''
+    };
+
+    _this._handleClick = _this._handleClick.bind(_this);
+    _this._handleChange = _this._handleChange.bind(_this);
+    return _this;
   }
 
   _createClass(TodoApp, [{
@@ -41,9 +45,22 @@ var TodoApp = exports.TodoApp = function (_Component) {
     key: 'componentWillUnmount',
     value: function componentWillUnmount() {}
   }, {
+    key: '_handleClick',
+    value: function _handleClick() {
+      alert('OK');
+    }
+  }, {
+    key: '_handleChange',
+    value: function _handleChange(e) {
+      // console.log('_changed: ' + e.target.value);
+      this.setState({
+        text: e.target.value
+      });
+    }
+  }, {
     key: 'render',
     value: function render() {
-      return _react2.default.createElement("div", null, _react2.default.createElement(_TodoList.TodoList, null), _react2.default.createElement("input", { value: "" }), _react2.default.createElement("button", null, "Add"));
+      return _react2.default.createElement("div", null, _react2.default.createElement(_TodoList.TodoList, { items: this.state.text }), _react2.default.createElement("input", { onChange: this._handleChange, value: this.state.text }), _react2.default.createElement("button", { onClick: this._handleClick }, "Add"));
     }
   }]);
 

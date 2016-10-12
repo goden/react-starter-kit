@@ -13,7 +13,7 @@ gulp.task('default', [], function(cb) {
 });
 
 gulp.task('build', function () {
-    return gulp.src(['src/*.jsx', 'src/**/*.jsx']) 
+    return gulp.src(['src/**/*.jsx'])
         .pipe(sourcemaps.init())
         .pipe(react({
           es6module: true
@@ -27,11 +27,18 @@ gulp.task('build', function () {
 
 // Watch Files For Changes
 gulp.task('watch', function () {
-    gulp.watch(['src/*.jsx', 'src/**/*.jsx'], ['build', 'browserify']);
+    gulp.watch(['src/**/*.jsx'], ['build']);
+    gulp.watch(['src/**/*.js'], ['todo']);
 });
 
 gulp.task('browserify', function () {
-    return gulp.src(['src/*.js', 'src/**/*.js'])
+    return gulp.src(['src/app.js'])
+            .pipe(browserify())
+            .pipe(gulp.dest('dist/scripts'));
+});
+
+gulp.task('todo', function () {
+    return gulp.src(['src/todo.js'])
             .pipe(browserify())
             .pipe(gulp.dest('dist/scripts'));
 });

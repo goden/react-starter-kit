@@ -1,13 +1,13 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+  value: true
 });
-exports.Title = undefined;
+exports.TodoList = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = require('react');
+var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
@@ -19,58 +19,34 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Title = exports.Title = function (_Component) {
-	_inherits(Title, _Component);
+var TodoList = exports.TodoList = function (_Component) {
+  _inherits(TodoList, _Component);
 
-	function Title(props, context) {
-		_classCallCheck(this, Title);
+  function TodoList(props, context) {
+    _classCallCheck(this, TodoList);
 
-		// getInitialState()
-		var _this = _possibleConstructorReturn(this, (Title.__proto__ || Object.getPrototypeOf(Title)).call(this, props, context));
+    return _possibleConstructorReturn(this, (TodoList.__proto__ || Object.getPrototypeOf(TodoList)).call(this, props, context));
 
-		_this.state = {
-			data: 'This is constructor.',
-			counter: 0
-		};
+    // this.state = {
+    //
+    // };
+  }
 
-		return _this;
-	}
+  _createClass(TodoList, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {}
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {}
+  }, {
+    key: "render",
+    value: function render() {
+      return _react2.default.createElement("div", null);
+    }
+  }]);
 
-	// Require use 'bind()' to bundle tick() to component.
-
-
-	_createClass(Title, [{
-		key: 'tick',
-		value: function tick() {
-			this.setState({
-				counter: this.state.counter + 1
-			});
-		}
-	}, {
-		key: 'componentDidMount',
-		value: function componentDidMount() {
-			this.interval = setInterval(this.tick.bind(this), 1000);
-		}
-	}, {
-		key: 'componentWillUnmount',
-		value: function componentWillUnmount() {
-			clearInterval(this.interval);
-		}
-	}, {
-		key: 'render',
-		value: function render() {
-			return _react2.default.createElement("div", null, _react2.default.createElement("h1", null, this.props.text, " by ", this.props.author), _react2.default.createElement("h2", null, this.state.data), "counter: ", this.state.counter);
-		}
-	}]);
-
-	return Title;
+  return TodoList;
 }(_react.Component);
 
-// getDeafultProps()
-
-
-Title.defaultProps = {
-	text: 'Hello',
-	author: 'Goden'
-};
-//# sourceMappingURL=Title.js.map
+TodoList.defaultProps = {};
+//# sourceMappingURL=TodoList.js.map
